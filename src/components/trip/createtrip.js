@@ -54,10 +54,10 @@ export default class CreateTrip extends Component {
           strokeColor: '#000000',
           icons: [{
             icon: { path: window.google.maps.SymbolPath.FORWARD_CLOSED_ARROW },
-            offset: '100%'
+            offset: '100%',
           }],
           strokeOpacity: 1.0,
-          strokeWeight: 3
+          strokeWeight: 3,
         });
         this.poly.setMap(this.map);
       },
@@ -73,7 +73,7 @@ export default class CreateTrip extends Component {
     const { tripName, locations, tips, names, description, images, coordinates } = this.state;
     const username = this.props.username;
     axios.post(`${config.server}/trips`, { coordinates, tripName, username, description, images, locations, tips, names }, {
-      headers:{ authorization: localStorage.getItem('token') }
+      headers: { authorization: localStorage.getItem('token') },
     }).then((res) => {
       this.setState({ tripName: '' });
     });
@@ -81,34 +81,34 @@ export default class CreateTrip extends Component {
   }
 
   addMarker(lat, lng) {
-    const icon={
+    const icon = {
       path: window.google.maps.SymbolPath.CIRCLE,
       scale: 8.5,
-      fillColor: "#F00",
+      fillColor: '#F00',
       fillOpacity: 0.4,
-      strokeWeight: 0.4
-    }
-    var contentString = `<div id="content"><div id="siteNotice"></div>
+      strokeWeight: 0.4,
+    };
+    const contentString = `<div id="content"><div id="siteNotice"></div>
       <h3 id="firstHeading" class="firstHeading">${this.state.locationName}</h3>
       <div id="bodyContent"><p>
       <p><b>Address: </b> ${this.state.location}</p>
       <b>Tips: </b>${this.state.tip}</p></div></div>`;
-    var infowindow = new window.google.maps.InfoWindow({ content: contentString });
-    var marker = new window.google.maps.Marker({
+    const infowindow = new window.google.maps.InfoWindow({ content: contentString });
+    const marker = new window.google.maps.Marker({
       position: { lat, lng },
       map: this.map,
       icon,
       title: this.state.locationName,
-      animation: window.google.maps.Animation.DROP
+      animation: window.google.maps.Animation.DROP,
     });
-    var path = this.poly.getPath();
-    path.push({ lat:() => lat, lng:() => lng })
-    marker.addListener('click', function() {
+    const path = this.poly.getPath();
+    path.push({ lat: () => lat, lng: () => lng });
+    marker.addListener('click', function () {
       infowindow.open(this.map, marker);
     });
-    this.bounds.extend(marker.position)
-    this.map.fitBounds(this.bounds)
-    var zoom = this.map.getZoom();
+    this.bounds.extend(marker.position);
+    this.map.fitBounds(this.bounds);
+    const zoom = this.map.getZoom();
     this.map.setZoom(zoom > 14 ? 14 : zoom);
   }
 
@@ -124,16 +124,16 @@ export default class CreateTrip extends Component {
 
   handleAdd(e) {
     e.preventDefault();
-    const { 
-      location, locationName, names, tip, tips, place, coordinate, coordinates, locations, images 
+    const {
+      location, locationName, names, tip, tips, place, coordinate, coordinates, locations, images,
     } = this.state;
-    const image = place[0].photos ? place[0].photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) : 'https://i.forbesimg.com/media/lists/places/san-francisco-ca_200x200.jpg' ;
+    const image = place[0].photos ? place[0].photos[0].getUrl({ maxWidth: 200, maxHeight: 200 }) : 'https://i.forbesimg.com/media/lists/places/san-francisco-ca_200x200.jpg';
     this.setState({
       locations: [...locations, location],
       names: [...names, locationName],
       tips: [...tips, tip],
       images: [...images, image],
-      coordinates: [...coordinates, coordinate]
+      coordinates: [...coordinates, coordinate],
     });
     this.setState({
       location: '',
@@ -150,8 +150,8 @@ export default class CreateTrip extends Component {
   renderForm() {
     const toggle = !this.state.toggle ? 'none' : 'block';
     return (
-      <div style={{ maxHeight: '100%', overflow: 'scroll'}} className="col-xs-6 col-xs-offset-6">
-      {this.state.tripName ? <h1 style={{fontFamily:'lobster'}}>{this.state.tripName}<hr/></h1> : ''}
+      <div style={{ maxHeight: '100%', overflow: 'scroll' }} className="col-xs-6 col-xs-offset-6">
+        {this.state.tripName ? <h1 style={{ fontFamily: 'lobster' }}>{this.state.tripName}<hr /></h1> : ''}
         <div style={{ display: toggle }} >
           <div className="row">
             <div className="col-xs-4">
@@ -171,10 +171,10 @@ export default class CreateTrip extends Component {
           <textarea maxLength="150" name="tip" className="form-control" placeholder="add your tips" value={this.state.tip} onChange={this.handleChange} />
           <br />
           <div className="btn-group">
-            <form onSubmit={this.handleAdd} style={{display:'inline-block', marginRight: '5px'}}>
+            <form onSubmit={this.handleAdd} style={{ display: 'inline-block', marginRight: '5px' }}>
               <button action="submit" className="btn btn-primary">Add Location</button>
             </form>
-            <form  onSubmit={this.handleSubmit} style={{display:'inline-block'}}>
+            <form onSubmit={this.handleSubmit} style={{ display: 'inline-block' }}>
               <button action="submit" className="btn btn-primary">Create Trip</button>
             </form>
           </div>
@@ -187,8 +187,8 @@ export default class CreateTrip extends Component {
   render() {
     const toggle = this.state.toggle ? 'none' : 'block';
     return (
-      <div className="createMap row-fluid" style={{height: '100%', width: '100%', position:'relative'}}>
-        <div style={{ height: '100%', width: '50%', position:'absolute' }} className="col-xs-6" id="map"/>
+      <div className="createMap row-fluid" style={{ height: '100%', width: '100%', position: 'relative' }}>
+        <div style={{ height: '100%', width: '50%', position: 'absolute' }} className="col-xs-6" id="map" />
         <DefineTrip toggle={toggle} submit={this.createTrip} />
         {this.renderForm()}
       </div>
