@@ -1,32 +1,37 @@
-# Project Name
+# Day Trips
 
-> A day trips app built in react using node, express, and mongo.
+Check out our [hosted demo](http://daytrip.crabdance.com/)
 
-## Team
+<img src="https://cloud.githubusercontent.com/assets/119115/26288124/bc747638-3e3f-11e7-9bb6-666c0b591ec4.png" width="250">
 
-  - __Product Owner__: Richard Hertzog
-  - __Scrum Master__: Aloak Misra
-  - __Development Team Members__: Zach Lipps
+Create day trips. Trips are a sequence of destinations provided by you.
 
-## Table of Contents
+<img src="https://cloud.githubusercontent.com/assets/119115/26288127/c0657cb0-3e3f-11e7-8402-fd8c6e78d410.png" width="250">
 
-1. [Usage](#Usage)
-1. [Requirements](#requirements)
-1. [Development](#development)
-    1. [Installing Dependencies](#installing-dependencies)
-    1. [Tasks](#tasks)
-1. [Team](#team)
-1. [Contributing](#contributing)
+View trips made by other users and search.
+
+<img src="https://cloud.githubusercontent.com/assets/119115/26288122/b6cf2c32-3e3f-11e7-8bad-cfa53d6b53fd.gif" width="250">
+
+Like trips made by yourself or others.
+
+## Contributors
+
+This was built as a project by a team of Hackreactor students.
+
+  - [Richard Hertzog](https://github.com/richardhertzog)
+  - [Aloak Misra](https://github.com/Aloakm)
+  - [Zach Lipps](https://github.com/zachlipps)
 
 ## Usage
 
 > Once hosted users can login to create trip lists associated with places on google maps. Fun day trip plans can be ranked by other users who can use them as a reference for themselves or make trips of their own.
 
-## Requirements
+## Tech Stack
 
-- Node 6.2.1
-- Express 4.15.2
-- Mongo 3.4.2
+- Node
+- Express
+- Mongo
+- Bootstrap
 
 ## Development
 
