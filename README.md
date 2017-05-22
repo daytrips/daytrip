@@ -1,4 +1,4 @@
-# Day Trips
+# DayTrip
 
 Check out our [hosted demo](http://daytrip.crabdance.com/)
 
